@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 from django.http import HttpResponse
 from django.shortcuts import render
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from .forms import LoginForm
 
 # Create your views here.
@@ -24,3 +24,9 @@ def user_login(request):
     else:
         form = LoginForm()
     return render(request, 'pages/login.html', {'form':form})
+
+def user_logout(request):
+    return HttpResponse('Logout')
+
+def home(request):
+    return HttpResponse('home')
