@@ -1,0 +1,33 @@
+{% extends "base_login.html" %}
+
+{%block title%} Authentification {% endblock %}
+
+{% block content %}
+
+
+<form method="POST" action=".">
+
+    <div class="form-group m-b-20 row">
+        <div class="col-12">
+          <label for="id_username">Nom d'utilisateur</label>
+          {{form.username}}
+        </div>
+    </div>
+
+    <div class="form-group row m-b-20">
+        <div class="col-12">
+          <label for="id_password">Mot de passe</label>
+          {{form.password}}
+        </div>
+    </div>
+    {% csrf_token %}
+
+    <div class="form-group row text-center m-t-10">
+        <div class="col-12">
+            <button class="btn btn-block btn-custom waves-effect waves-light" type="submit">Connexion</button>
+        </div>
+    </div>
+
+</form>
+
+{%endblock%}
