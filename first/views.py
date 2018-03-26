@@ -29,4 +29,4 @@ def user_logout(request):
     return HttpResponse('Logout')
 
 def home(request):
-    return HttpResponse('home')
+    return render(request, 'pages/home.html')
