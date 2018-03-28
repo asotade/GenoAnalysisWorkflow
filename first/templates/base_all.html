@@ -11,6 +11,13 @@
         <!-- App favicon -->
         <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
 
+
+        <!-- Bootstrap fileupload css -->
+        <link href="{% static 'plugins/bootstrap-fileupload/bootstrap-fileupload.css' %}" rel="stylesheet" />
+
+        <!-- Dropzone css -->
+        <link href="{% static 'plugins/dropzone/dropzone.css'%}" rel="stylesheet" type="text/css" />
+
         <!-- App css -->
         <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
         <link href="{% static 'css/icons.css' %}" rel="stylesheet" type="text/css" />
@@ -50,7 +57,7 @@
                         <div class="user-img">
                             <img src="{% static 'images/users/avatar-1.jpg' %}" alt="user-img" title="Mat Helme" class="rounded-circle img-fluid">
                         </div>
-                        <h5><a href="#">{{request.user.username}}</a> </h5>
+                        <h5><a href="#">{{request.user.first_name}} {{request.user.last_name}}</a> </h5>
                         <p class="text-muted">normal user</p>
                     </div>
 
@@ -64,16 +71,14 @@
 
 
                             <li>
-                                <a href="javascript: void(0);"><i class="fi-share"></i> <span> Multi Level </span> <span class="menu-arrow"></span></a>
-                                <ul class="nav-second-level nav" aria-expanded="false">
-                                    <li><a href="javascript: void(0);">Level 1.1</a></li>
-                                    <li><a href="javascript: void(0);" aria-expanded="false">Level 1.2 <span class="menu-arrow"></span></a>
-                                        <ul class="nav-third-level nav" aria-expanded="false">
-                                            <li><a href="javascript: void(0);">Level 2.1</a></li>
-                                            <li><a href="javascript: void(0);">Level 2.2</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
+                                <a href="javascript: void(0);"><i class="fi-share">
+                                </i> <span> Menu rapide </span> <span class="menu-arrow"></span></a>
+                                  <ul class="nav-second-level nav" aria-expanded="false">
+                                      <li><a href="{%url 'quality'%}">Quality Score</a></li>
+                                      <li><a href="{%url 'alignment'%}">Allignement</a></li>
+                                      <li><a href="{%url 'var_calling'%}">Variant Calling</a></li>
+                                      <li><a href="{%url 'annotation'%}">Annotation</a></li>
+                                  </ul>
                             </li>
 
                         </ul>
@@ -121,7 +126,7 @@
                                     </a>
 
                                     <!-- item-->
-                                    <a href="../logout/" class="dropdown-item notify-item">
+                                    <a href="{% url 'logout' %}" class="dropdown-item notify-item">
                                         <i class="fi-power"></i> <span>Deconnexion</span>
                                     </a>
 
@@ -184,9 +189,15 @@
         <script src="{% static 'js/waves.js' %}"></script>
         <script src="{% static 'js/jquery.slimscroll.js' %}"></script>
 
+        <!-- Bootstrap fileupload js -->
+        <script src="{% static 'plugins/bootstrap-fileupload/bootstrap-fileupload.js' %}"></script>
+
+        <!-- Dropzone js -->
+        <script src="{% static 'plugins/dropzone/dropzone.js' %}"></script>
+
         <!-- App js -->
         <script src="{% static 'js/jquery.core.js' %}"></script>
         <script src="{% static 'js/jquery.app.js' %}"></script>
-
+{% block addedscripts %} {% endblock %}
     </body>
 </html>

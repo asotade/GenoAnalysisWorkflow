@@ -1,5 +1,7 @@
 {%extends 'base_all.html' %}
 
+<!-- ************************************************************  -->
+
 {% block title %} Acceuil {% endblock %}
 
 {% block templatetitle %}
@@ -7,10 +9,115 @@
 <div class="page-title-box">
     <h4 class="page-title">Acceuil </h4>
     <ol class="breadcrumb">
-        <li class="breadcrumb-item active"></li>
+        <li class="breadcrumb-item">AutoGAW</li>
+        <li class="breadcrumb-item active">Acceuil</li>
     </ol>
 </div>
 
 {% endblock %}
 
-{% block content %} Acceuil {% endblock %}
+<!-- ************************************************************  -->
+
+{% block content %}
+
+<div class="row">
+     <div class="col-12">
+         <div class="card-box">
+             <h4 class="header-title m-t-0">Sequences à comparer</h4>
+             <p class="text-muted font-14 m-b-10">
+                 Placez vos fichier ici.
+             </p>
+
+             <form action="#" class="dropzone" id="MyDrpZone">
+                 <div class="fallback">
+                     <input name="file" type="file" multiple />
+                 </div>
+             </form>
+             <div class="clearfix text-right mt-3">
+               <button type="button" id="resetForm" class="btn btn-warning waves-effect waves-light">Vider</button>
+               <button type="button" id="submit-all" class="btn btn-success waves-effect waves-light">Valider</button>
+             </div>
+         </div>
+     </div>
+ </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card m-b-30 card-inverse text-white bg-custom" >
+        <div class="card-body">
+          <h5 class="card-title">Quality Score</h5>
+          <p class="card-text">Évaluer la qualité de sequence avant de se procéder a l'analyse.</p>
+          <a href="{%url 'quality'%}" class="btn btn-custom waves-effect waves-light" style="background-color: #333; border-color: #333;">Voir</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card m-b-30 card-inverse text-white bg-info" >
+        <div class="card-body">
+          <h5 class="card-title">Allignement</h5>
+          <p class="card-text">Analyser la séquence avec une séquence de réference.</p>
+          <a href="{%url 'alignment'%}" class="btn btn-custom waves-effect waves-light" style="background-color: #333; border-color: #333;">alligner</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card m-b-30 card-inverse text-white bg-primary" >
+        <div class="card-body">
+          <h5 class="card-title">Variant calling</h5>
+          <p class="card-text">Interpretation des resultat de l’allignement et dont le but est avoir un score.</p>
+          <a href="{%url 'var_calling'%}" class="btn btn-custom waves-effect waves-light" style="background-color: #333; border-color: #333;">Voir</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card m-b-30 card-inverse text-white bg-success" >
+        <div class="card-body">
+          <h5 class="card-title">Annotation</h5>
+          <p class="card-text">identifier les emplacements des gènes et toutes les régions codantes dans un génome et déterminer ce que ces gènes font.</p>
+          <a href="{%url 'annotation'%}" class="btn btn-custom waves-effect waves-light" style="background-color: #333; border-color: #333;">Voir</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+<!-- ************************************************************  -->
+
+{% block addedscripts %}
+
+ <script>
+    Dropzone.options.MyDrpZone = {
+     autoProcessQueue: false,
+     dictDefaultMessage : "Placez votre fichier \"fastq\" ici. ",
+
+     init: function() {
+
+
+       var submitButton = document.querySelector("#submit-all")
+       var resetButton = document.querySelector("#resetForm")
+       var MyDrpZone = this;
+
+       submitButton.addEventListener("click", function() {
+         MyDrpZone.processQueue();
+       });
+
+       resetButton.addEventListener("click",function(){
+           MyDrpZone.removeAllFiles();
+       });
+
+       MyDrpZone.on("addedfile", function() {
+          if (this.files[2]!=null){
+             MyDrpZone.removeFile(this.files[0]);
+           }
+       });
+
+
+     }
+   };
+ </script>
+
+{% endblock %}
