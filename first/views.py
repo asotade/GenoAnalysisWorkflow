@@ -42,7 +42,10 @@ def quality(request):
 
 @login_required
 def alignment(request):
-    return render(request, 'pages/alignement.html')
+    if request.method == 'POST':
+        return render(request, 'pages/alignement.html',{"result":request.POST.get('test')})
+    else:
+        return render(request, 'pages/alignement.html')
 
 @login_required
 def var_calling(request):

@@ -20,7 +20,16 @@
 <!-- ************************************************************  -->
 
 {% block content %}
+{%if result is not None %}
 
+<h3>{{result}}</h3>
+
+{%else%}
+<form  action="{%url 'alignment'%}" method="post">
+  {% csrf_token %}
+  <input type="text" name="test" value="">
+</form>
+{%endif%}
 {% endblock %}
 
 <!-- ************************************************************  -->

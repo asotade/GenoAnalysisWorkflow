@@ -42,7 +42,7 @@
 
                     <!-- LOGO -->
                     <div class="topbar-left">
-                        <a href="#" class="logo">
+                        <a href="{%url 'home'%}" class="logo">
                             <span>
                                 <img src="{% static 'images/logo.png' %}" alt="" height="22">
                             </span>
@@ -58,7 +58,9 @@
                             <img src="{% static 'images/users/avatar-1.jpg' %}" alt="user-img" title="Mat Helme" class="rounded-circle img-fluid">
                         </div>
                         <h5><a href="#">{{request.user.first_name}} {{request.user.last_name}}</a> </h5>
-                        <p class="text-muted">normal user</p>
+                        <p class="text-muted">{%if request.user.email is not None %}
+                          {{request.user.email}}
+                        {%else%}Aucun email{%endif%}</p>
                     </div>
 
                     <!--- Sidemenu -->
