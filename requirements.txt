@@ -1,4 +1,0 @@
-biopython==1.70
-Django==1.11.11
-numpy==1.14.2
-pytz==2018.3
